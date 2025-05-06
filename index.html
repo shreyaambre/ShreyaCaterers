@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shreya Caterers | Menu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fffaf5;
+      color: #4e342e;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #800000;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .dish {
+      padding: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .name {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .marathi {
+      font-size: 1rem;
+      color: #6d4c41;
+    }
+    .price {
+      float: right;
+      font-weight: bold;
+      color: #4e342e;
+    }
+    @media (max-width: 600px) {
+      .price {
+        float: none;
+        display: block;
+        margin-top: 0.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Shreya Caterers</h1>
+    <p>Menu | मेनू</p>
+  </header>
+  <div class="container" id="menu">
+    <!-- Menu will load here -->
+  </div>
+
+  <script>
+    fetch('menu.json')
+      .then(response => response.json())
+      .then(data => {
+        const menuDiv = document.getElementById('menu');
+        data.forEach(dish => {
+          menuDiv.innerHTML += `
+            <div class="dish">
+              <div class="name">${dish.name_en} <span class="price">${dish.price}</span></div>
+              <div class="marathi">${dish.name_mr}</div>
+            </div>
+          `;
+        });
+      });
+  </script>
+</body>
+</html>
